@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_agenda_estilo_twitch/util/my_color.dart';
 
 class MyDropdown extends StatelessWidget {
   final List<String> items;
@@ -22,7 +23,10 @@ class MyDropdown extends StatelessWidget {
           ...this.items.map(
                 (el) => DropdownMenuItem(
                   value: el,
-                  child: Text(el),
+                  child: Container(
+                      padding: EdgeInsets.only(left: 4),
+                      child: Text(el,
+                          style: Theme.of(context).textTheme.headline1)),
                 ),
               )
         ],
