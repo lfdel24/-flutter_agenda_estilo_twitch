@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agenda_estilo_twitch/components/home_page/controller/agenda_controller.dart';
-import 'package:flutter_agenda_estilo_twitch/components/home_page/add_item.dart';
-import 'package:flutter_agenda_estilo_twitch/components/home_page/model/itemj.dart';
+import 'package:flutter_agenda_estilo_twitch/components/home_page/new_item.dart';
+import 'package:flutter_agenda_estilo_twitch/components/home_page/inherited_widget/my_inherited_widget.dart';
+import 'package:flutter_agenda_estilo_twitch/components/home_page/model/item.dart';
+import 'package:flutter_agenda_estilo_twitch/custom/my_text_style.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // body: _BuilderBody(),
-      body: AddItem(),
+      body: NewItem(),
     );
   }
 }
 
 class _BuilderBody extends StatelessWidget {
-  final controller = AgendaController();
-
   @override
   Widget build(BuildContext context) {
-    this.controller.loadItems();
+    final controller = MyInheritedWidget.of(context)!.controller;
+    controller.loadItems();
     return Container(
       width: double.infinity,
       color: Colors.black87,
@@ -31,10 +31,10 @@ class _BuilderBody extends StatelessWidget {
             children: [
               Text(
                 "Agenda lfdel24@gmail.com",
-                style: Theme.of(context).textTheme.headline1,
+                style: MyTextStyle.title,
               ),
               ValueListenableBuilder(
-                  valueListenable: this.controller.items,
+                  valueListenable: controller.items,
                   builder: (_, List<Item> items, ___) =>
                       _BuilderListView(items: items)),
             ],
@@ -79,7 +79,7 @@ class _BuilderListView extends StatelessWidget {
                       padding: EdgeInsets.only(left: 12),
                       color: Colors.pink,
                       height: 100,
-                      child: Text("sdsdfijsodifjsod2"),
+                      child: Text("Este es un demo toc acambiarlo"),
                     ),
                   ),
                   Container(

@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_agenda_estilo_twitch/components/home_page/model/itemj.dart';
+import 'package:flutter_agenda_estilo_twitch/components/home_page/model/item.dart';
 
 class AgendaController {
   final items = ValueNotifier(<Item>[]);
+  final newItem = Item(id: "", title: "", category: "", day: "", time: "");
 
   void loadItems() {
     this.items.value.addAll([

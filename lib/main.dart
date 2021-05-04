@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_agenda_estilo_twitch/components/home_page/controller/agenda_controller.dart';
 import 'package:flutter_agenda_estilo_twitch/components/home_page/home_page.dart';
+import 'package:flutter_agenda_estilo_twitch/components/home_page/inherited_widget/my_inherited_widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,16 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Agenda | lfdel24@gmail.com',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: TextTheme(
-          headline1: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          headline2: TextStyle(fontSize: 16),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Agenda | lfdel24@gmail.com',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
-      ),
-      home: HomePage(),
-    );
+        home: MyInheritedWidget(
+          widget: HomePage(),
+          controller: AgendaController(),
+        ));
   }
 }
