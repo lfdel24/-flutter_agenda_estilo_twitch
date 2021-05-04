@@ -4,8 +4,7 @@ import 'package:flutter_agenda_estilo_twitch/util/my_time_picker.dart';
 import 'package:flutter_agenda_estilo_twitch/util/my_dropdown.dart';
 
 class AddItem extends StatelessWidget {
-  final _timeController = TextEditingController(
-      text: "${TimeOfDay.now().hour}:${TimeOfDay.now().minute}");
+  final _timeController = TextEditingController(text: MyTimePicker.timeOfDay);
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +31,22 @@ class AddItem extends StatelessWidget {
             //   "jueves",
             //   "Viernes",
             // ]),
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
+            TextButton(
+              onPressed: () async {
+                await MyTimePicker.timePicker(
+                    context: context, timeController: _timeController);
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("seleccione una hora ejemplo: 12:00",
+                      style: Theme.of(context).textTheme.headline2),
+                  TextField(
                     enabled: false,
                     controller: _timeController,
-                    decoration: InputDecoration(hintText: "Hora"),
                   ),
-                ),
-                InkWell(
-                    onTap: () async {
-                      await MyTimePicker.timePicker(
-                          context: context, timeController: _timeController);
-                    },
-                    child: Icon(Icons.timelapse)),
-              ],
+                ],
+              ),
             ),
           ],
         ),
