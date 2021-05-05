@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_agenda_estilo_twitch/components/home_page/new_item.dart';
 import 'package:flutter_agenda_estilo_twitch/components/home_page/inherited_widget/my_inherited_widget.dart';
 import 'package:flutter_agenda_estilo_twitch/components/home_page/model/item.dart';
+import 'package:flutter_agenda_estilo_twitch/custom/my_listener_builder.dart';
 import 'package:flutter_agenda_estilo_twitch/custom/my_text_style.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,10 +34,11 @@ class _BuilderBody extends StatelessWidget {
                 "Agenda lfdel24@gmail.com",
                 style: MyTextStyle.title,
               ),
-              ValueListenableBuilder(
-                  valueListenable: controller.items,
-                  builder: (_, List<Item> items, ___) =>
-                      _BuilderListView(items: items)),
+              MyListenerBuilder(
+                listener: controller,
+                builder: (_, widget) =>
+                    _BuilderListView(items: controller.items),
+              )
             ],
           ),
         ),

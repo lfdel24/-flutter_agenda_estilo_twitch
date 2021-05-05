@@ -52,7 +52,7 @@ class NewItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("seleccione una hora ejemplo: 13:00:pm"),
+                  Text("Seleccione una hora ejemplo: 13:00:pm"),
                   TextField(
                     enabled: false,
                     controller: _timeController,
@@ -65,7 +65,7 @@ class NewItem extends StatelessWidget {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      item.id = "1";
+                      item.id = UniqueKey().toString();
                       item.time = _timeController.text;
                       MyInheritedWidget.of(context)!.controller.addItem();
                     },

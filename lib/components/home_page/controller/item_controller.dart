@@ -1,17 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_agenda_estilo_twitch/components/home_page/model/item.dart';
 
-class ItemController {
-  final items = ValueNotifier(<Item>[]);
+class ItemController extends ChangeNotifier {
+  final items = <Item>[];
   Item newItem = Item(id: "", title: "", category: "", day: "", time: "");
 
   void addItem() {
-    this.items.value = [...this.items.value, newItem];
-    this.newItem = Item(id: "", title: "", category: "", day: "", time: "");
+    this.items.add(this.newItem);
+    this.newItem = _initItem();
+    this.notifyListeners();
+  }
+
+  Item _initItem() {
+    return Item(id: "", title: "", category: "", day: "", time: "");
   }
 
   void loadItems() {
-    this.items.value.addAll([
+    this.items.addAll([
       Item(
           id: "1",
           title: "Desarrollando proyecto en laravel",
@@ -37,5 +42,6 @@ class ItemController {
       //     day: "Lun",
       //     time: "03/05/2021"),
     ]);
+    this.notifyListeners();
   }
 }
