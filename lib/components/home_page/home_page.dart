@@ -8,8 +8,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body: _BuilderBody(),
-      body: NewItem(),
+      body: _BuilderBody(),
+      // body: NewItem(),
     );
   }
 }
@@ -21,7 +21,6 @@ class _BuilderBody extends StatelessWidget {
     controller.loadItems();
     return Container(
       width: double.infinity,
-      color: Colors.black87,
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: 1280),
         child: Container(
@@ -29,6 +28,7 @@ class _BuilderBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              NewItem(),
               Text(
                 "Agenda lfdel24@gmail.com",
                 style: MyTextStyle.title,
@@ -57,7 +57,6 @@ class _BuilderListView extends StatelessWidget {
         itemCount: this.items.length,
         itemBuilder: (_, i) => Container(
           height: 128,
-          color: Colors.black54,
           padding: EdgeInsets.only(top: 4),
           alignment: Alignment.centerLeft,
           child: Column(

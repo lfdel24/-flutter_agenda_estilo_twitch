@@ -67,7 +67,7 @@ class NewItem extends StatelessWidget {
                     onPressed: () {
                       item.id = "1";
                       item.time = _timeController.text;
-                      print(item.toString());
+                      MyInheritedWidget.of(context)!.controller.addItem();
                     },
                     child: Text("Aceptar")),
                 SizedBox(width: 8),

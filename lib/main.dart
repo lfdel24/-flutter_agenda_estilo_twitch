@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agenda_estilo_twitch/components/home_page/controller/agenda_controller.dart';
+import 'package:flutter_agenda_estilo_twitch/components/home_page/controller/item_controller.dart';
 import 'package:flutter_agenda_estilo_twitch/components/home_page/home_page.dart';
 import 'package:flutter_agenda_estilo_twitch/components/home_page/inherited_widget/my_inherited_widget.dart';
 
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         ),
         home: MyInheritedWidget(
           widget: HomePage(),
-          controller: AgendaController(),
+          controller: ItemController(),
         ));
   }
 }
