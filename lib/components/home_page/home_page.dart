@@ -70,9 +70,7 @@ class _BuilderActions extends StatelessWidget {
                 icon: controller.itemVisibility
                     ? Icon(Icons.close_outlined)
                     : Icon(Icons.add_rounded),
-                onPressed: () {
-                  controller.changeItemVisibility();
-                }),
+                onPressed: () => controller.changeItemVisibility()),
           ),
           SizedBox(width: 8),
           MyListenerBuilder(

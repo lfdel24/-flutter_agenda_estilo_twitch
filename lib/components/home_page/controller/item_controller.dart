@@ -9,6 +9,13 @@ class ItemController extends ChangeNotifier {
   final timeController = TextEditingController(text: MyTimePicker.timeOfDay);
   final focusNodeTitle = FocusNode();
   //
+  void myDispose() {
+    this.titleController.dispose();
+    this.timeController.dispose();
+    this.focusNodeTitle.dispose();
+    this.item = Item(id: "", title: "", category: "", day: "", time: "");
+    this.items.clear();
+  }
 
   final items = <Item>[];
   Item item = Item(id: "", title: "", category: "", day: "", time: "");
@@ -41,6 +48,7 @@ class ItemController extends ChangeNotifier {
     this.titleController.text = "";
     this.timeController.text = MyTimePicker.timeOfDay;
     this.focusNodeTitle.requestFocus();
+    changeItemVisibility();
     this.notifyListeners();
   }
 
