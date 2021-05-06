@@ -29,11 +29,12 @@ class _BuilderBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              NewItem(),
+              // NewItem(),
               Text(
                 "Agenda lfdel24@gmail.com",
                 style: MyTextStyle.title,
               ),
+              SizedBox(height: 14),
               MyListenerBuilder(
                 listener: controller,
                 builder: (_, widget) =>
@@ -58,38 +59,30 @@ class _BuilderListView extends StatelessWidget {
       child: ListView.builder(
         itemCount: this.items.length,
         itemBuilder: (_, i) => Container(
+          decoration: BoxDecoration(
+            color: Colors.white54,
+            borderRadius: BorderRadius.circular(12),
+          ),
           height: 128,
-          padding: EdgeInsets.only(top: 4),
-          alignment: Alignment.centerLeft,
-          child: Column(
+          padding: EdgeInsets.all(8),
+          // alignment: Alignment.centerLeft,
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(this.items[i].day),
-              SizedBox(
-                height: 8,
-              ),
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    color: Colors.white,
-                    width: 100,
-                    height: 100,
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.only(left: 12),
-                      color: Colors.pink,
-                      height: 100,
-                      child: Text("Este es un demo toc acambiarlo"),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    width: 100,
-                    height: 100,
-                  ),
+                  Text(this.items[i].day),
+                  SizedBox(height: 8),
+                  Text(this.items[i].title),
                 ],
               ),
+              IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () {
+                    MyInheritedWidget.of(context)!.controller.removeItem(i);
+                  }),
             ],
           ),
         ),

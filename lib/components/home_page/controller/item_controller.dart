@@ -5,14 +5,19 @@ class ItemController extends ChangeNotifier {
   final items = <Item>[];
   Item newItem = Item(id: "", title: "", category: "", day: "", time: "");
 
-  void addItem() {
-    this.items.add(this.newItem);
-    this.newItem = _initItem();
+  void removeItem(int i) {
+    this.items.removeAt(i);
     this.notifyListeners();
   }
 
-  Item _initItem() {
-    return Item(id: "", title: "", category: "", day: "", time: "");
+  void addItem() {
+    this.items.add(this.newItem);
+    this.newItem = initItem();
+    this.notifyListeners();
+  }
+
+  initItem() {
+    this.newItem = Item(id: "", title: "", category: "", day: "", time: "");
   }
 
   void loadItems() {
