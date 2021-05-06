@@ -18,7 +18,6 @@ class HomePage extends StatelessWidget {
 class _BuilderBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print("_BuilderBody");
     final controller = MyInheritedWidget.of(context)!.controller;
     controller.loadItems();
     return Container(
@@ -111,7 +110,7 @@ class _BuilderListView extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(this.items[i].day),
+                  Text("${this.items[i].day} ${this.items[i].time}"),
                   SizedBox(height: 8),
                   Text(this.items[i].title),
                 ],

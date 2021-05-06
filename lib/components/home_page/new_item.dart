@@ -4,10 +4,6 @@ import 'package:flutter_agenda_estilo_twitch/custom/my_dropdown.dart';
 import 'package:flutter_agenda_estilo_twitch/custom/my_time_picker.dart';
 
 class NewItem extends StatelessWidget {
-  final _titleController = TextEditingController(text: "");
-  final _timeController = TextEditingController(text: MyTimePicker.timeOfDay);
-  final FocusNode _focusNodeTitle = FocusNode();
-
   @override
   Widget build(BuildContext context) {
     final controller = MyInheritedWidget.of(context)!.controller;
@@ -18,8 +14,8 @@ class NewItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              controller: this._titleController,
-              focusNode: this._focusNodeTitle,
+              controller: controller.titleController,
+              focusNode: controller.focusNodeTitle,
               decoration: InputDecoration(hintText: "Título"),
             ),
             SizedBox(height: 12),
@@ -50,7 +46,8 @@ class NewItem extends StatelessWidget {
             TextButton(
               onPressed: () async {
                 await MyTimePicker.timePicker(
-                    context: context, timeController: _timeController);
+                    context: context,
+                    timeController: controller.timeController);
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +55,7 @@ class NewItem extends StatelessWidget {
                   Text("Seleccione una hora ejemplo: 13:00:pm"),
                   TextField(
                     enabled: false,
-                    controller: _timeController,
+                    controller: controller.timeController,
                   ),
                 ],
               ),
@@ -67,22 +64,11 @@ class NewItem extends StatelessWidget {
             Row(
               children: [
                 ElevatedButton(
-                    onPressed: () {
-                      controller.item.id = UniqueKey().toString();
-                      controller.item.title = _titleController.text;
-                      controller.item.time = _timeController.text;
-                      controller.addItem();
-                      controller.changeItemVisibility();
-                    },
+                    onPressed: () => controller.addItem(),
                     child: Text("Aceptar")),
                 SizedBox(width: 8),
                 ElevatedButton(
-                    onPressed: () {
-                      controller.cancel();
-                      _titleController.text = "";
-                      _timeController.text = MyTimePicker.timeOfDay;
-                      this._focusNodeTitle.requestFocus();
-                    },
+                    onPressed: () => controller.cancel(),
                     child: Text("Cancelar")),
               ],
             ),
