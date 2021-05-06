@@ -18,6 +18,7 @@ class HomePage extends StatelessWidget {
 class _BuilderBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print("_BuilderBody");
     final controller = MyInheritedWidget.of(context)!.controller;
     controller.loadItems();
     return Container(
@@ -29,10 +30,19 @@ class _BuilderBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // NewItem(),
               Text(
-                "Agenda lfdel24@gmail.com",
+                "Flutter Agenda lfdel24@gmail.com",
                 style: MyTextStyle.title,
+              ),
+              SizedBox(height: 14),
+              _BuilderActions(),
+              SizedBox(height: 14),
+              MyListenerBuilder(
+                listener: controller,
+                builder: (_, widget) => Visibility(
+                  visible: controller.itemVisibility,
+                  child: NewItem(),
+                ),
               ),
               SizedBox(height: 14),
               MyListenerBuilder(
@@ -43,6 +53,34 @@ class _BuilderBody extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _BuilderActions extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final controller = MyInheritedWidget.of(context)!.controller;
+    return Container(
+      child: Row(
+        children: [
+          MyListenerBuilder(
+            listener: controller,
+            builder: (_, widget) => IconButton(
+                icon: controller.itemVisibility
+                    ? Icon(Icons.close_outlined)
+                    : Icon(Icons.add_rounded),
+                onPressed: () {
+                  controller.changeItemVisibility();
+                }),
+          ),
+          SizedBox(width: 8),
+          MyListenerBuilder(
+            listener: controller,
+            builder: (_, widget) => Text("${controller.items.length} items"),
+          ),
+        ],
       ),
     );
   }
@@ -65,7 +103,7 @@ class _BuilderListView extends StatelessWidget {
           ),
           height: 128,
           padding: EdgeInsets.all(8),
-          // alignment: Alignment.centerLeft,
+          margin: EdgeInsets.only(top: 4),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

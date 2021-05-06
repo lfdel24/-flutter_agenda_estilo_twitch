@@ -30,7 +30,7 @@ class NewItem extends StatelessWidget {
                 "Gameplays",
                 "Música",
               ],
-              item: controller.newItem,
+              item: controller.item,
               type: ItemType.category,
             ),
             SizedBox(height: 12),
@@ -43,7 +43,7 @@ class NewItem extends StatelessWidget {
                 "jueves",
                 "Viernes",
               ],
-              item: controller.newItem,
+              item: controller.item,
               type: ItemType.day,
             ),
             SizedBox(height: 12),
@@ -68,17 +68,17 @@ class NewItem extends StatelessWidget {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      controller.newItem.id = UniqueKey().toString();
-                      controller.newItem.title = _titleController.text;
-                      controller.newItem.time = _timeController.text;
+                      controller.item.id = UniqueKey().toString();
+                      controller.item.title = _titleController.text;
+                      controller.item.time = _timeController.text;
                       controller.addItem();
-                      this._focusNodeTitle.requestFocus();
+                      controller.changeItemVisibility();
                     },
                     child: Text("Aceptar")),
                 SizedBox(width: 8),
                 ElevatedButton(
                     onPressed: () {
-                      controller.initItem();
+                      controller.cancel();
                       _titleController.text = "";
                       _timeController.text = MyTimePicker.timeOfDay;
                       this._focusNodeTitle.requestFocus();
